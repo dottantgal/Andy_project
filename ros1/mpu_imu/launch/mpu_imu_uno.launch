@@ -1,0 +1,7 @@
+<launch>
+
+  <node pkg="mpu_imu" type="imu_type_creator_uno" name="imu_type_creator_uno" required="true">
+    <param name="port" value="/dev/ttyUSB0"/>
+  </node>
+
+</launch>

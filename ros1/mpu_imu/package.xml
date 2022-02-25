@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>mpu_imu</name>
+  <version>0.0.0</version>
+  <description>The mpu_imu package</description>
+  <maintainer email="antoniomauro.galiano@gmail.com">Antonio Mauro Galiano</maintainer>
+  <license>BSD</license>
+  <author email="you@yourdomain.tld">Jane Doe</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>roscpp</depend>
+  <depend>rospy</depend>
+  <depend>roslaunch</depend>
+  <depend>std_msgs</depend>
+  <depend>std_srvs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>serial</depend>
+  <depend>tf</depend>
+  <depend>tf2</depend>
+  <depend>tf2_ros</depend>
+
+</package>

@@ -1,0 +1,5 @@
+# Request message type
+bool reset
+---
+# Response message type
+bool reset_done

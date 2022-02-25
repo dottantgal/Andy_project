@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- run the teensy IMU -->
+  <node pkg="rosserial_python"
+        type="serial_node.py"
+        name="teensy_imu"
+        output="screen">
+    <param name="port" value="/dev/ttyACM0"/>
+    <param name="baud" value="500000" />
+  </node>
+
+  <!-- Run the IMU msg creator MPU6050-->
+  <node pkg="mpu_imu"
+        type="imu_type_creator_tf2_6050"
+        name="imu_type_creator_tf2_6050"
+        output="screen"
+        respawn="true">
+  </node>
+
+  <!-- Run the imu calibration node -->
+  <node pkg="imu_calib" type="apply_calib" name="apply_calib" output="screen" respawn="false">
+      <param name="calib_file" value="$(find andy_ros1)/param/imu_calib.yaml" />
+      <param name="calibrate_gyros" value="true" />
+      <remap from="/raw/" to="/imu/6050"/>
+  </node>
+
+
+  <!-- Filter and fuse raw imu data
+  <node pkg="imu_filter_madgwick" type="imu_filter_node" name="imu_filter_madgwick" output="screen" respawn="false" >
+      <param name="fixed_frame" value="base_footprint" />
+      <param name="use_mag" value="false" />
+      <param name="publish_tf" value="true" />
+      <param name="use_magnetic_field_msg" value="false" />
+      <param name="world_frame" value="enu" />
+      <param name="orientation_stddev" value="0.0" />
+      <param name="stateless" value="false" />
+      <remap from="/imu/data_raw" to="/corrected"/>
+  </node>-->
+
+   <!-- run the static transformation node from base_link to imu
+  <node pkg="tf2_ros"
+        type="static_transform_publisher"
+        name="base_footprint_to_imu_6050_link"
+        args="0.0 0.0 0.0 0.0 0.0 0.0 /base_footprint /imu_6050_link">
+  </node>-->
+
+</launch>

@@ -1,0 +1,20 @@
+<launch>
+
+  <!-- run the Nano serial communication node-->
+  <node pkg="rosserial_python"
+        type="serial_node.py"
+        name="arduino_nano"
+        output="screen">
+    <param name="port" value="/dev/ttyUSB0"/>
+    <param name="baud" value="115200" />
+  </node>
+
+	<!-- run the IMU msg creator -->
+  <node pkg="mpu_imu"
+        type="imu_type_creator"
+        name="imu_type_creator"
+        output="screen"
+        respawn="true">
+  </node>
+
+</launch>
